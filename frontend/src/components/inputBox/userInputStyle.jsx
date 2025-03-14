@@ -20,3 +20,15 @@ export const Helper = styled.div`
   font-size: 0.75rem;
   color: red;
 `;
+
+//profileImg.jsx
+export const ImgInput = styled.div`
+  height: 9.25rem;
+  width: 9.25rem;
+  border-radius: 4.625rem;
+  font-size: 1.5rem;
+  background-color: #d9d9d9;
+  align-self: center;
+  text-align: center;
+  line-height: 9.25rem;
+`;
