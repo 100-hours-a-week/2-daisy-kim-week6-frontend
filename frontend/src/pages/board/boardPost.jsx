@@ -41,7 +41,11 @@ export default function BoardPost() {
           <S.TitleText>이미지</S.TitleText>
           <S.InputImg type="file" />
         </S.InputWrapper>
-        <SubmitButton func={clickAction} />
+        {id ? (
+          <SubmitButton func={clickAction} text="수정하기" />
+        ) : (
+          <SubmitButton func={clickAction} text="완료" />
+        )}
       </S.Container>
     </S.Wrapper>
   );

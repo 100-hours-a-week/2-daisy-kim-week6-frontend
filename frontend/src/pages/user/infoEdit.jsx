@@ -18,7 +18,7 @@ export default function InfoEdit() {
       <S.Title>회원정보 수정</S.Title>
       <S.Container>
         <ProfileInput title="프로필 사진*" />
-        <Input title="이메일" placeholder="scw09268@naver.com" no={true} />
+        <Input title="이메일" placeholder="scw09268@naver.com" noInput={true} />
         <Input title="닉네임" value="daisy" />
       </S.Container>
       <SubmitButton func={showEditOk} text="수정하기" />

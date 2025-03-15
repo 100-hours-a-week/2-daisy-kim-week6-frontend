@@ -15,6 +15,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 `;
 export const Title = styled.div`
   font-size: 1.5rem;
@@ -59,20 +60,4 @@ export const InputContent = styled.textarea`
 `;
 export const InputImg = styled.input`
   margin: 0rem 1.5rem;
-`;
-export const SubmitButton = styled.div`
-  width: 22rem;
-  height: 2rem;
-  background-color: ${lightPurple};
-  color: white;
-  border-radius: 0.25rem;
-  align-self: center;
-  line-height: 2rem;
-  text-align: center;
-  font-weight: 700;
-  font-size: 0.875rem;
-  cursor: pointer;
-  &:hover {
-    box-shadow: 0px 0px 0.5rem ${line};
-  }
 `;
