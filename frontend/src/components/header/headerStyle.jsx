@@ -24,6 +24,7 @@ export const Container = styled.div`
 export const Back = styled(IoIosArrowBack)`
   font-size: 1.6rem;
   cursor: pointer;
+  width: 2rem;
 `;
 export const Title = styled.div`
   font-size: 2rem;
