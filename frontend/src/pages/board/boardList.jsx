@@ -30,7 +30,7 @@ export default function BoardList() {
         <S.PostButton>게시글 작성</S.PostButton>
         <S.ListWrapper>
           {boards.map((board) => (
-            <BoardItem key={board.boardId} board={board} />
+            <BoardItem key={board.id} board={board} />
           ))}
         </S.ListWrapper>
       </S.BodyWrapper>

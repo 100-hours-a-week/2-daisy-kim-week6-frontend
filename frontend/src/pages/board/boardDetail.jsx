@@ -1,58 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style/boardDetailStyle';
 import { useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
+import BoardDetailHeader from '../../components/board/header';
+import ContentBody from '../../components/board/contentBody';
+import CommentInput from '../../components/comment/input';
+import api from '../../axios';
+import CommentItem from '../../components/comment/commentItem';
 
 export default function BoardDetail() {
-  const param = useParams();
+  const id = useParams().boardId;
+  const [comments, setComments] = useState([]);
+
+  const fetchComments = async () => {
+    try {
+      const response = await api.get(`/board/${id}/comment`);
+      setComments(response.data);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
   return (
     <S.Wrapper>
-      <Header />
+      <Header back={true} myPage={true} />
       <S.ContentWrapper>
-        <S.HeaderWrapper>
-          <S.Title>제목1</S.Title>
-          <S.HeaderBottom>
-            <S.UserInfo>
-              <S.UserImg>프사</S.UserImg>
-              <S.UserName>이름</S.UserName>
-              <S.BoardDate>시간</S.BoardDate>
-            </S.UserInfo>
-            <S.ButtonWrapper>
-              <S.Button>수정</S.Button>
-              <S.Button>삭제</S.Button>
-            </S.ButtonWrapper>
-          </S.HeaderBottom>
-        </S.HeaderWrapper>
-        <div>
-          <div>본문 이미지</div>
-          <div>본문 내용</div>
-          <div>
-            <div>
-              0 <br />
-              좋아요수
-            </div>
-            <div>
-              0 <br />
-              조회수
-            </div>
-            <div>
-              0 <br />
-              댓글
-            </div>
-          </div>
-        </div>
+        <BoardDetailHeader />
+        <ContentBody />
       </S.ContentWrapper>
-      <div>
-        <div>
-          <div>입력창</div>
-          <div>
-            <div>댓글 등록</div>
-          </div>
-        </div>
-        <div>
-          <div>댓글</div>
-        </div>
-      </div>
+      <S.CommentWrapper>
+        <CommentInput />
+        <S.CommentList>
+          {comments.map((comment) => (
+            <CommentItem item={comment} key={comment.id} />
+          ))}
+        </S.CommentList>
+      </S.CommentWrapper>
     </S.Wrapper>
   );
 }
