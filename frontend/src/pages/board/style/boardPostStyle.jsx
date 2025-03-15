@@ -73,6 +73,6 @@ export const SubmitButton = styled.div`
   font-size: 0.875rem;
   cursor: pointer;
   &:hover {
-    box-shadow: 0px 0px 0.2rem ${line};
+    box-shadow: 0px 0px 0.5rem ${line};
   }
 `;
