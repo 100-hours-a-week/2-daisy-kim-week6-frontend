@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const lightPurple = '#ACA0EB';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,6 +17,8 @@ export const Input = styled.input`
   border-radius: 0.25rem;
   border-width: 1px;
   font-size: 0.875rem;
+  background-color: transparent;
+  outline-color: ${lightPurple};
 `;
 export const Helper = styled.div`
   font-size: 0.75rem;
