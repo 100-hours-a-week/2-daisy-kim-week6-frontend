@@ -15,11 +15,11 @@ export const Wrapper = styled.div`
   background-color: ${backgroundColor};
 `;
 export const Container = styled.div`
-  width: 37rem;
+  width: 34.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
+  margin: 1rem 0rem;
 `;
 export const Back = styled(IoIosArrowBack)`
   font-size: 1.6rem;
