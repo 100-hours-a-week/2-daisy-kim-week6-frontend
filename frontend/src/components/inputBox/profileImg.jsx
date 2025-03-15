@@ -6,7 +6,13 @@ export default function ProfileInput({ title }) {
     <S.Container>
       <S.Title>{title}</S.Title>
       <S.Helper>helper text</S.Helper>
-      <S.ImgInput>+</S.ImgInput>
+      <S.ImgInputWrapper>
+        <S.ImgInput type="file" id="img-input" />
+        <S.CumstomLabel htmlFor="img-input">
+          <S.Plus>+</S.Plus>
+        </S.CumstomLabel>
+        <S.RealImg id="profile-preview" src="" alt="프로필 이미지" />
+      </S.ImgInputWrapper>
     </S.Container>
   );
 }

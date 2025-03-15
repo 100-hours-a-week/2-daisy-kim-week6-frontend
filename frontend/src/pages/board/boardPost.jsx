@@ -2,11 +2,15 @@ import React from 'react';
 import Header from '../../components/header/header';
 import * as S from './style/boardPostStyle';
 import { useNavigate, useParams } from 'react-router-dom';
+import SubmitButton from '../../components/button/submitButton';
 
 export default function BoardPost() {
   const nav = useNavigate();
   const id = useParams().boardId;
-  console.log(id);
+  function clickAction() {
+    nav('/board');
+  }
+
   return (
     <S.Wrapper>
       <Header back={true} myPage={true} />
@@ -37,7 +41,7 @@ export default function BoardPost() {
           <S.TitleText>이미지</S.TitleText>
           <S.InputImg type="file" />
         </S.InputWrapper>
-        <S.SubmitButton onClick={() => nav('/board')}>완료</S.SubmitButton>
+        <SubmitButton func={clickAction} />
       </S.Container>
     </S.Wrapper>
   );
