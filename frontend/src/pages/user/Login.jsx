@@ -16,7 +16,11 @@ export default function Login() {
       <S.InputWrapper>
         <S.Title>로그인</S.Title>
         <Input title={'이메일'} placeholder={'이메일을 입력하세요.'} />
-        <Input title={'비밀번호'} placeholder={'비밀번호를 입력하세요.'} />
+        <Input
+          title={'비밀번호'}
+          placeholder={'비밀번호를 입력하세요.'}
+          isPw={true}
+        />
         <SubmitButton func={clickAction} text="로그인" />
         <S.GotoSignup onClick={() => nav('signup')}>회원가입</S.GotoSignup>
       </S.InputWrapper>

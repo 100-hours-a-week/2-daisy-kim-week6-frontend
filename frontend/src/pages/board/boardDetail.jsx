@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style/boardDetailStyle';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../../components/header/header';
 import BoardDetailHeader from '../../components/board/header';
 import ContentBody from '../../components/board/contentBody';
@@ -9,6 +9,8 @@ import api from '../../axios';
 import CommentItem from '../../components/comment/commentItem';
 
 export default function BoardDetail() {
+  const nav = useNavigate();
+
   const id = useParams().boardId;
   const [comments, setComments] = useState([]);
 
@@ -22,8 +24,15 @@ export default function BoardDetail() {
     }
   };
 
+  function checkExistingId() {
+    if (id === '9999') {
+      nav('/board');
+    }
+  }
+
   useEffect(() => {
     fetchComments();
+    checkExistingId();
   }, []);
 
   return (

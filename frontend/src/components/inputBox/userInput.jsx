@@ -1,13 +1,17 @@
 import React from 'react';
 import * as S from './userInputStyle';
 
-export default function Input({ title, placeholder, no }) {
+export default function Input({ title, placeholder, noInput, isPw }) {
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
-      {!no ? (
+      {!noInput ? (
         <>
-          <S.Input type="text" placeholder={placeholder} />
+          {isPw ? (
+            <S.Input type="password" placeholder={placeholder} />
+          ) : (
+            <S.Input type="text" placeholder={placeholder} />
+          )}
           <S.Helper>helper text</S.Helper>
         </>
       ) : (

@@ -15,7 +15,7 @@ export default function Header({ back, myPage }) {
         {back ? <S.Back onClick={() => nav(-1)} /> : <S.Blank></S.Blank>}
         <S.Title>아무말 대잔치</S.Title>
         {myPage ? (
-          <S.MyPage onClick={openToggle}>토글</S.MyPage>
+          <S.MyPage onClick={openToggle}></S.MyPage>
         ) : (
           <S.Blank></S.Blank>
         )}

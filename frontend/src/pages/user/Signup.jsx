@@ -18,10 +18,15 @@ export default function Signup() {
       <S.InputWrapper>
         <ProfileInput title={'프로필 사진'} />
         <Input title={'이메일*'} placeholder={'이메일을 입력하세요.'} />
-        <Input title={'비밀번호*'} placeholder={'비밀번호를 입력하세요.'} />
+        <Input
+          title={'비밀번호*'}
+          placeholder={'비밀번호를 입력하세요.'}
+          isPw={true}
+        />
         <Input
           title={'비밀번호 확인*'}
           placeholder={'비밀번호를 한 번 더 입력하세요.'}
+          isPw={true}
         />
         <Input title={'닉네임*'} placeholder={'닉네임을 입력하세요.'} />
         <SubmitButton func={clickAction} text="회원가입" />
