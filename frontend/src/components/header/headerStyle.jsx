@@ -36,6 +36,7 @@ export const MyPage = styled.div`
   background-color: #d9d9d9;
   text-align: center;
   line-height: 2rem;
+  cursor: pointer;
 `;
 export const Blank = styled.div`
   width: 2rem;
