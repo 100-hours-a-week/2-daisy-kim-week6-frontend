@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Header from '../../components/header/header';
 import Input from '../../components/inputBox/userInput';
 import * as S from './style/LoginStyle';
@@ -9,17 +9,22 @@ import {
   handleEmailMessage,
   handlePwMessage,
 } from '../../utils/userValidation';
+import HandleInputs from '../../utils/handleInputs';
 
 export default function Login() {
   const nav = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailMessage, setEmailMessage] = useState('');
-  const [pwMessage, setPwMessage] = useState('');
-  const [isdisable, setIsdisable] = useState(true);
-
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handlePw = (e) => setPassword(e.target.value);
+  const {
+    email,
+    password,
+    handleEmail,
+    handlePassword,
+    emailMessage,
+    setEmailMessage,
+    passwordMessage,
+    setPasswordMessage,
+    isdisable,
+    handleDisable,
+  } = HandleInputs();
 
   const fetchLogin = async () => {
     const requestData = { email, password };
@@ -28,7 +33,7 @@ export default function Login() {
       if (response.data.id !== null) {
         nav('/board');
       } else {
-        setPwMessage(response.data.message);
+        setPasswordMessage(response.data.message);
         setEmailMessage(response.data.message);
       }
       console.log(response.data);
@@ -39,16 +44,12 @@ export default function Login() {
 
   useEffect(() => {
     handleEmailMessage(email, setEmailMessage);
-    handlePwMessage(password, setPwMessage);
-  }, [email, password]);
+    handlePwMessage(password, setPasswordMessage);
+  }, [email, password, setEmailMessage, setPasswordMessage]);
 
   useEffect(() => {
-    if (emailMessage === '' && pwMessage === '') {
-      setIsdisable(false);
-    } else {
-      setIsdisable(true);
-    }
-  }, [emailMessage, pwMessage]);
+    handleDisable();
+  }, [emailMessage, passwordMessage, handleDisable]);
 
   return (
     <S.Wrapper>
@@ -65,8 +66,8 @@ export default function Login() {
           title={'비밀번호'}
           placeholder={'비밀번호를 입력하세요. (8자 이상 20자 이하)'}
           isPw={true}
-          func={handlePw}
-          helper={pwMessage}
+          func={handlePassword}
+          helper={passwordMessage}
         />
         <SubmitButton func={fetchLogin} text="로그인" isDisable={isdisable} />
         <S.GotoSignup onClick={() => nav('signup')}>회원가입</S.GotoSignup>

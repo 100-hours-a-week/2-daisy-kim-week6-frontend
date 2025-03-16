@@ -48,6 +48,7 @@ export const ImgInput = styled.input`
   width: 0;
   height: 0;
   position: absolute;
+  display: none;
 `;
 export const CumstomLabel = styled.label`
   cursor: pointer;
@@ -55,12 +56,14 @@ export const CumstomLabel = styled.label`
   width: 9.25rem;
   border-radius: 4.625rem;
   display: flex;
-`;
-export const Plus = styled.div`
-  width: 9.25rem;
-  border-radius: 4.625rem;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
 `;
 export const RealImg = styled.img`
   cursor: pointer;
-  display: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 `;
