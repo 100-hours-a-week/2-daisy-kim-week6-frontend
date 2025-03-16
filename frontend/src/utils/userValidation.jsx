@@ -21,3 +21,37 @@ export function handlePwMessage(password, setPwMessage) {
     setPwMessage('');
   }
 }
+
+export function handlePwConfirmMessage(
+  password,
+  passwordConfirm,
+  setPasswordConfirmMessage
+) {
+  if (passwordConfirm === '') {
+    setPasswordConfirmMessage('비밀번호를 한 번 더 입력해 주세요.');
+  } else if (password !== passwordConfirm) {
+    setPasswordConfirmMessage('비밀번호가 다릅니다.');
+  } else {
+    setPasswordConfirmMessage('');
+  }
+}
+
+export function handleNameMessage(name, setNameMessage) {
+  if (name === '') {
+    setNameMessage('닉네임을 입력해 주세요.');
+  } else if (name.includes(' ')) {
+    setNameMessage('띄어쓰기를 없애 주세요.');
+  } else if (name.length > 10) {
+    setNameMessage('닉네임은 최대 10자까지 가능합니다.');
+  } else {
+    setNameMessage('');
+  }
+}
+
+export function handleImageUrlMessage(imageUrl, setImageUrlMessage) {
+  if (imageUrl === '') {
+    setImageUrlMessage('프로필 사진을 추가해 주세요.');
+  } else {
+    setImageUrlMessage('');
+  }
+}
