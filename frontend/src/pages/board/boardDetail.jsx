@@ -5,42 +5,28 @@ import Header from '../../components/header/header';
 import BoardDetailHeader from '../../components/board/header';
 import ContentBody from '../../components/board/contentBody';
 import CommentInput from '../../components/comment/input';
-import api from '../../utils/axios';
 import CommentItem from '../../components/comment/commentItem';
+import fetchBoard from '../../utils/api/getBoardInfo';
+import fetchComments from '../../utils/api/getComments';
 
 export default function BoardDetail() {
   const nav = useNavigate();
 
   const id = useParams().boardId;
   const [comments, setComments] = useState([]);
-
-  const fetchComments = async () => {
-    try {
-      const response = await api.get(`/board/${id}/comment`);
-      setComments(response.data);
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  function checkExistingId() {
-    if (id === '9999') {
-      nav('/board');
-    }
-  }
+  const [boardData, setBoardData] = useState('');
 
   useEffect(() => {
-    fetchComments();
-    checkExistingId();
-  }, []);
+    fetchComments(id, setComments);
+    fetchBoard(setBoardData, id, nav);
+  }, [id, nav]);
 
   return (
     <S.Wrapper>
       <Header back={true} myPage={true} />
       <S.ContentWrapper>
-        <BoardDetailHeader />
-        <ContentBody />
+        <BoardDetailHeader board={boardData} />
+        <ContentBody board={boardData} />
       </S.ContentWrapper>
       <S.CommentWrapper>
         <CommentInput />

@@ -9,10 +9,9 @@ export const ContentBodyWrapper = styled.div`
   border-bottom: 1px solid #00000040;
   gap: 0.8rem;
 `;
-export const ContentImg = styled.div`
+export const ContentImg = styled.img`
   background-color: ${gray};
-  max-height: 18.75rem;
-  min-height: 4rem;
+  max-height: 22.75rem;
 `;
 export const ContentText = styled.div`
   font-size: 0.9375rem;

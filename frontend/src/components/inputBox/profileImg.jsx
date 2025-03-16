@@ -14,7 +14,7 @@ export default function ProfileInput({ title, func, helper, imageUrl }) {
             <S.RealImg src={imageUrl} alt="프로필 이미지" />
           </>
         ) : (
-          <S.CumstomLabel htmlFor="img-input">+ </S.CumstomLabel>
+          <S.CumstomLabel htmlFor="img-input">+</S.CumstomLabel>
         )}
       </S.ImgInputWrapper>
     </S.Container>

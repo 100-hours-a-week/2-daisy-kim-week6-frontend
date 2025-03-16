@@ -21,6 +21,7 @@ function HandleInputs() {
       setImageUrl(imageUrl);
     }
   };
+
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handlePasswordConfirm = (e) => setPasswordConfirm(e.target.value);
