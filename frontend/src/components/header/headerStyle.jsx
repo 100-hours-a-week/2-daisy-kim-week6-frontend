@@ -29,7 +29,7 @@ export const Back = styled(IoIosArrowBack)`
 export const Title = styled.div`
   font-size: 2rem;
 `;
-export const MyPage = styled.div`
+export const MyPage = styled.img`
   width: 2rem;
   height: 2rem;
   border-radius: 1rem;

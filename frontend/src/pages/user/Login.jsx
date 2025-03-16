@@ -8,8 +8,8 @@ import api from '../../utils/axios';
 import {
   handleEmailMessage,
   handlePwMessage,
-} from '../../utils/userValidation';
-import HandleInputs from '../../utils/handleInputs';
+} from '../../utils/user/userValidation';
+import HandleInputs from '../../utils/user/handleInputs';
 
 export default function Login() {
   const nav = useNavigate();

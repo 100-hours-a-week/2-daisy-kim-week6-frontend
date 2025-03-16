@@ -7,7 +7,7 @@ export const UserInfo = styled.div`
   gap: 0.8rem;
   align-items: center;
 `;
-export const UserImg = styled.div`
+export const UserImg = styled.img`
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 1.125rem;

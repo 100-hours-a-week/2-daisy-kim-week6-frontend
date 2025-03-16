@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom';
 export default function BoardList() {
   const nav = useNavigate();
   const [boards, setBoards] = useState([]);
+
   const fetchData = async () => {
     try {
       const response = await api.get('/board');
       setBoards(response.data);
-      console.log(response.data);
     } catch (e) {
       console.log(e);
     }
@@ -20,6 +20,7 @@ export default function BoardList() {
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <S.Wrapper>
       <Header back={false} myPage={true} />

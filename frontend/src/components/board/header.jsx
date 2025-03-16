@@ -3,13 +3,13 @@ import * as S from './style/headerStyle';
 import EditDelete from '../button/EditDelete';
 import UserInfo from './userInfo';
 
-export default function BoardDetailHeader() {
+export default function BoardDetailHeader({ board }) {
   return (
     <S.HeaderWrapper>
-      <S.Title>제목1</S.Title>
+      <S.Title>{board.title}</S.Title>
       <S.HeaderBottom>
-        <UserInfo />
-        <EditDelete link="/board" />
+        <UserInfo object={board} />
+        {board.myBoard ? <EditDelete link="/board" /> : null}
       </S.HeaderBottom>
     </S.HeaderWrapper>
   );

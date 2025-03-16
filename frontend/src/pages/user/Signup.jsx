@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import ProfileInput from '../../components/inputBox/profileImg';
 import SubmitButton from '../../components/button/submitButton';
 import api from '../../utils/axios';
-import HandleInputs from '../../utils/handleInputs';
+import HandleInputs from '../../utils/user/handleInputs';
 import {
   handleEmailMessage,
   handleImageUrlMessage,
   handleNameMessage,
   handlePwConfirmMessage,
   handlePwMessage,
-} from '../../utils/userValidation';
+} from '../../utils/user/userValidation';
 
 export default function Signup() {
   const nav = useNavigate();
@@ -47,6 +47,8 @@ export default function Signup() {
   const fetchSignup = async () => {
     try {
       const requestData = { name, password, passwordConfirm, email, imageUrl };
+      console.log('보낼 데이터:', JSON.stringify(requestData)); // ❗ 콘솔에서 확인
+
       const response = await api.post('/user/registeration', requestData);
       if (response.data.id !== null) {
         nav('/');
