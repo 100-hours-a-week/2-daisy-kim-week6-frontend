@@ -5,7 +5,7 @@ import Header from '../../components/header/header';
 import BoardDetailHeader from '../../components/board/header';
 import ContentBody from '../../components/board/contentBody';
 import CommentInput from '../../components/comment/input';
-import api from '../../axios';
+import api from '../../utils/axios';
 import CommentItem from '../../components/comment/commentItem';
 
 export default function BoardDetail() {

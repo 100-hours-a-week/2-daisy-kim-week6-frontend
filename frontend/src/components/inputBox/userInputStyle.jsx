@@ -23,6 +23,7 @@ export const Input = styled.input`
 export const Helper = styled.div`
   font-size: 0.75rem;
   color: red;
+  height: 0.75rem;
 `;
 export const NoInputText = styled.div`
   height: 2rem;
