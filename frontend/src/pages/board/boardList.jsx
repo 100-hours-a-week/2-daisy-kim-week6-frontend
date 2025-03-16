@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style/boardListStyle';
 import Header from '../../components/header/header';
-import api from '../../axios';
+import api from '../../utils/axios';
 import BoardItem from '../../components/board/boardItemBox';
 import { useNavigate } from 'react-router-dom';
 
