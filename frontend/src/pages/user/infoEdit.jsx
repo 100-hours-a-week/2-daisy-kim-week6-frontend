@@ -68,6 +68,16 @@ export default function InfoEdit() {
     }
   }
 
+  async function withdraw() {
+    try {
+      await api.delete('/user/withdraw');
+    } catch (e) {
+      console.log(e.response.data);
+    } finally {
+      nav('/');
+    }
+  }
+
   return (
     <S.Wrapper>
       <Header back={true} myPage={true} newProfile={newProfile} />
@@ -92,7 +102,7 @@ export default function InfoEdit() {
         text="수정하기"
         isDisable={isdisable}
       />
-      <S.WithdrawButton onClick={() => nav('/')}>회원탈퇴</S.WithdrawButton>
+      <S.WithdrawButton onClick={withdraw}>회원탈퇴</S.WithdrawButton>
       {show ? <S.EditOk>수정 완료</S.EditOk> : null}
     </S.Wrapper>
   );
