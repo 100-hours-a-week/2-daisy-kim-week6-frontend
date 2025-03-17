@@ -6,27 +6,25 @@ import BoardDetailHeader from '../../components/board/header';
 import ContentBody from '../../components/board/contentBody';
 import CommentInput from '../../components/comment/input';
 import CommentItem from '../../components/comment/commentItem';
-import fetchBoard from '../../utils/api/getBoardInfo';
 import fetchComments from '../../utils/api/getComments';
+import BoardInfo from '../../utils/api/getBoardInfo';
 
 export default function BoardDetail() {
-  const nav = useNavigate();
-
   const id = useParams().boardId;
   const [comments, setComments] = useState([]);
-  const [boardData, setBoardData] = useState('');
+  const { data, fetchBoard } = BoardInfo();
 
   useEffect(() => {
     fetchComments(id, setComments);
-    fetchBoard(setBoardData, id, nav);
-  }, [id, nav]);
+    fetchBoard();
+  }, [id]);
 
   return (
     <S.Wrapper>
       <Header back={true} myPage={true} />
       <S.ContentWrapper>
-        <BoardDetailHeader board={boardData} />
-        <ContentBody board={boardData} id={id} />
+        <BoardDetailHeader board={data} />
+        <ContentBody board={data} id={data.id} />
       </S.ContentWrapper>
       <S.CommentWrapper>
         <CommentInput />
