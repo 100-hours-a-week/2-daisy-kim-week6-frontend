@@ -26,7 +26,7 @@ export default function BoardDetail() {
       <Header back={true} myPage={true} />
       <S.ContentWrapper>
         <BoardDetailHeader board={boardData} />
-        <ContentBody board={boardData} />
+        <ContentBody board={boardData} id={id} />
       </S.ContentWrapper>
       <S.CommentWrapper>
         <CommentInput />

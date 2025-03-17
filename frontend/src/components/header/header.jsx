@@ -2,28 +2,30 @@ import React, { useEffect, useState } from 'react';
 import * as S from './headerStyle';
 import { useNavigate } from 'react-router-dom';
 import Toggle from './toggle';
-import api from '../../utils/axios';
+import GetUserInfo from '../../utils/api/getUserInfo';
 
-export default function Header({ back, myPage }) {
+export default function Header({ back, myPage, newProfile }) {
   const nav = useNavigate();
-  const [imageUrl, setImageUrl] = useState('');
   const [open, setOpen] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
   function openToggle() {
     setOpen(!open);
   }
 
-  const fetchUserImg = async () => {
-    try {
-      const response = await api.get('/user');
-      setImageUrl(response.data.imageUrl);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const { data, fetchUserInfo } = GetUserInfo();
 
   useEffect(() => {
-    fetchUserImg();
+    fetchUserInfo();
   }, []);
+
+  useEffect(() => {
+    if (newProfile) {
+      setImageUrl(newProfile);
+    } else {
+      setImageUrl(data.imageUrl);
+    }
+  }, [newProfile, data]);
+
   return (
     <S.Wrapper>
       <S.Container>
