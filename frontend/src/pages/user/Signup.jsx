@@ -47,7 +47,7 @@ export default function Signup() {
   const fetchSignup = async () => {
     try {
       const requestData = { name, password, passwordConfirm, email, imageUrl };
-      console.log('보낼 데이터:', JSON.stringify(requestData)); // ❗ 콘솔에서 확인
+      console.log('보낼 데이터:', JSON.stringify(requestData));
 
       const response = await api.post('/user/registeration', requestData);
       if (response.data.id !== null) {

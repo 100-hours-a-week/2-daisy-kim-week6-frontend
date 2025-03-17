@@ -7,6 +7,7 @@ export default async function fetchBoard(setData, id, nav) {
       nav('/board');
     }
     setData(response.data);
+    console.log(response.data);
   } catch (e) {
     console.log(e);
   }

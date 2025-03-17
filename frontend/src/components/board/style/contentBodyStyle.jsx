@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const gray = '#d9d9d9';
+const lightPurple = '#ACA0EB';
 
 export const ContentBodyWrapper = styled.div`
   display: flex;
@@ -35,6 +36,7 @@ export const CountInfo = styled.div`
   padding-top: 0.6rem;
 `;
 export const LikeButton = styled(CountInfo)`
+  background-color: ${({ isLiked }) => (isLiked ? lightPurple : gray)};
   &:hover {
     transform: scale(0.96);
     transition: transform 0.2s ease;

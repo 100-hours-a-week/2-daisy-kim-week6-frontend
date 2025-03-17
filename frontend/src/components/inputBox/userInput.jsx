@@ -8,6 +8,7 @@ export default function Input({
   isPw,
   func,
   helper,
+  value,
 }) {
   return (
     <S.Container>
@@ -26,7 +27,7 @@ export default function Input({
           <S.Helper>{helper}</S.Helper>
         </>
       ) : (
-        <S.NoInputText>api로 이메일 들어갈 곳</S.NoInputText>
+        <S.NoInputText>{value}</S.NoInputText>
       )}
     </S.Container>
   );
