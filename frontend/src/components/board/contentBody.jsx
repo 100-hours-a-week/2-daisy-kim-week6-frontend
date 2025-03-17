@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style/contentBodyStyle';
 import api from '../../utils/axios';
 
 export default function ContentBody({ board, id }) {
+  const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(0);
-  const [isLiked, setIsLiked] = useState(board.like);
+
+  useEffect(() => {
+    setLikes(board.likeCount);
+    setIsLiked(board.like);
+  }, [board]);
 
   async function fetchLike() {
     let newIsLiked = !isLiked;

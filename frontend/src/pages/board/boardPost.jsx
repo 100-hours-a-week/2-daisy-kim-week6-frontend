@@ -1,15 +1,59 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../../components/header/header';
 import * as S from './style/boardPostStyle';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import SubmitButton from '../../components/button/submitButton';
+import BoardInputs from '../../utils/user/boardInputs';
+import {
+  handleContentMessage,
+  handleTitleMessage,
+} from '../../utils/user/boardValidation';
+import BoardInfo from '../../utils/api/getBoardInfo';
 
 export default function BoardPost() {
-  const nav = useNavigate();
   const id = useParams().boardId;
-  function clickAction() {
-    nav('/board');
-  }
+
+  const {
+    title,
+    content,
+    setTitle,
+    setContent,
+    postBoard,
+    setImageUrl,
+    updateBoard,
+    handleTitle,
+    handleContent,
+    handleImageUrl,
+    titleMessage,
+    contentMessage,
+    setTitleMessage,
+    setContentMessage,
+    isdisable,
+    handleDisable,
+  } = BoardInputs();
+
+  const { data, fetchBoard } = BoardInfo();
+
+  useEffect(() => {
+    handleDisable();
+  }, [titleMessage, contentMessage, handleDisable]);
+
+  useEffect(() => {
+    handleTitleMessage(title, setTitleMessage);
+    handleContentMessage(content, setContentMessage);
+  }, [title, content, setTitleMessage, setContentMessage]);
+
+  useEffect(() => {
+    fetchBoard();
+  }, [id]);
+
+  useEffect(() => {
+    if (data) {
+      setContent(data.content);
+      setTitle(data.title);
+      setImageUrl(data.boardImageUrl);
+    }
+  }, [data]);
 
   return (
     <S.Wrapper>
@@ -21,30 +65,46 @@ export default function BoardPost() {
           <S.InputContainer>
             {id ? (
               //onChange로 바뀔 예정
-              <S.InputTitle value="이미 있는 제목" />
+              <S.InputTitle onChange={handleTitle} value={title} />
             ) : (
-              <S.InputTitle placeholder="제목을 입력해주세요. (최대 26글자)" />
+              <S.InputTitle
+                placeholder="제목을 입력해주세요. (최대 26글자)"
+                onChange={handleTitle}
+              />
             )}
           </S.InputContainer>
-          <S.HelperText>asdf</S.HelperText>
+          <S.HelperText>{titleMessage}</S.HelperText>
 
           <S.TitleText>내용*</S.TitleText>
           <S.InputContainer>
             {id ? (
-              <S.InputContent value="이미 있는 내용" />
+              <S.InputContent onChange={handleContent} value={content} />
             ) : (
-              <S.InputContent placeholder="내용을 입력해주세요." />
+              <S.InputContent
+                placeholder="내용을 입력해주세요."
+                onChange={handleContent}
+              />
             )}
           </S.InputContainer>
-          <S.HelperText>asdf</S.HelperText>
+          <S.HelperText>{contentMessage}</S.HelperText>
 
           <S.TitleText>이미지</S.TitleText>
-          <S.InputImg type="file" />
+          <S.InputImgWrapper>
+            <S.CustomLabel htmlFor="img-input">파일 선택</S.CustomLabel>
+            <S.ImgSpan>
+              {data.boardImageUrl ? data.boardImageUrl : '파일을 선택해주세요.'}
+            </S.ImgSpan>
+            <S.InputImg id="img-input" type="file" onChange={handleImageUrl} />
+          </S.InputImgWrapper>
         </S.InputWrapper>
-        {id ? (
-          <SubmitButton func={clickAction} text="수정하기" />
+        {id ? ( //수정 api로 나중에 변경
+          <SubmitButton
+            func={updateBoard}
+            text="수정하기"
+            isDisable={isdisable}
+          />
         ) : (
-          <SubmitButton func={clickAction} text="완료" />
+          <SubmitButton func={postBoard} text="완료" isDisable={isdisable} />
         )}
       </S.Container>
     </S.Wrapper>
