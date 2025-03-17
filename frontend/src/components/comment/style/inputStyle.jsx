@@ -21,8 +21,12 @@ export const Input = styled.textarea`
   height: 5.75rem;
   resize: none;
 `;
-export const CommentButton = styled.div`
-  background-color: ${lightPurple};
+export const CommentButton = styled.div.attrs(({ isDisable }) => ({
+  'aria-disabled': isDisable,
+}))`
+  height: 2rem;
+  background-color: ${({ isDisable }) =>
+    isDisable ? lightPurple : `${purple}`};
   width: 8.5rem;
   height: 2.5rem;
   line-height: 2.5rem;
@@ -35,6 +39,7 @@ export const CommentButton = styled.div`
   justify-self: flex-end;
   cursor: pointer;
   &:hover {
-    background-color: ${purple};
+    box-shadow: ${({ isDisable }) =>
+      isDisable ? `none` : `0px 0px 0.5rem ${line}`};
   }
 `;

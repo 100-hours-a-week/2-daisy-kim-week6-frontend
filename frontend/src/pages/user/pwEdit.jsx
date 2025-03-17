@@ -4,11 +4,11 @@ import Header from '../../components/header/header';
 import * as S from './style/editStyle';
 import SubmitButton from '../../components/button/submitButton';
 import api from '../../utils/axios';
-import HandleInputs from '../../utils/user/handleInputs';
+import HandleInputs from '../../utils/inputLogics/handleInputs';
 import {
   handlePwConfirmMessage,
   handlePwMessage,
-} from '../../utils/user/userValidation';
+} from '../../utils/validation/userValidation';
 
 export default function PwEdit() {
   const [show, setShow] = useState(false);

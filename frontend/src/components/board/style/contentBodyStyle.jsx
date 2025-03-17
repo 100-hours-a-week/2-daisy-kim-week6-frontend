@@ -26,7 +26,6 @@ export const CountInfoWrapper = styled.div`
 export const CountInfo = styled.div`
   text-align: center;
   background-color: ${gray};
-  cursor: pointer;
   width: 6.75rem;
   height: 3.64rem;
   border-radius: 1rem;
@@ -36,6 +35,7 @@ export const CountInfo = styled.div`
   padding-top: 0.6rem;
 `;
 export const LikeButton = styled(CountInfo)`
+  cursor: pointer;
   background-color: ${({ isLiked }) => (isLiked ? lightPurple : gray)};
   &:hover {
     transform: scale(0.96);

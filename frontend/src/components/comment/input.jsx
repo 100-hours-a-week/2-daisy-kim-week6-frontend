@@ -1,13 +1,19 @@
 import React from 'react';
-import * as S from './inputStyle';
+import * as S from './style/inputStyle';
 
-export default function CommentInput() {
+export default function CommentInput({ func, isDisable, submit, newCommeent }) {
   return (
     <S.CommentInputWrapper>
       <S.CommentInputContainer>
-        <S.Input placeholder="댓글을 남겨주세요!" />
+        <S.Input
+          placeholder="댓글을 남겨주세요!"
+          onChange={func}
+          value={newCommeent}
+        />
       </S.CommentInputContainer>
-      <S.CommentButton>댓글 등록</S.CommentButton>
+      <S.CommentButton onClick={submit} isDisable={isDisable}>
+        댓글 등록
+      </S.CommentButton>
     </S.CommentInputWrapper>
   );
 }

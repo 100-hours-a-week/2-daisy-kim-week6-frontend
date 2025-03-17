@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import api from '../axios';
 import HandleInputs from './handleInputs';
-import { handleContentMessage, handleTitleMessage } from './boardValidation';
+import {
+  handleContentMessage,
+  handleTitleMessage,
+} from '../validation/boardValidation';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function BoardInputs() {

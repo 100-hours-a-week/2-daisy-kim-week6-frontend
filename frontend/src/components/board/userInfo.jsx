@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style/userInfoStyle';
-import formatDate from '../../utils/formatDate';
+import formatDate from '../../utils/validation/formatDate';
 
 export default function UserInfo({ object }) {
   return (
