@@ -3,11 +3,11 @@ import Header from '../../components/header/header';
 import * as S from './style/boardPostStyle';
 import { useParams } from 'react-router-dom';
 import SubmitButton from '../../components/button/submitButton';
-import BoardInputs from '../../utils/user/boardInputs';
+import BoardInputs from '../../utils/inputLogics/boardInputs';
 import {
   handleContentMessage,
   handleTitleMessage,
-} from '../../utils/user/boardValidation';
+} from '../../utils/validation/boardValidation';
 import BoardInfo from '../../utils/api/getBoardInfo';
 
 export default function BoardPost() {

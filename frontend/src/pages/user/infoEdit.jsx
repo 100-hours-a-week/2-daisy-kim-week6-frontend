@@ -6,11 +6,11 @@ import * as S from './style/editStyle';
 import { useNavigate } from 'react-router-dom';
 import SubmitButton from '../../components/button/submitButton';
 import GetUserInfo from '../../utils/api/getUserInfo';
-import HandleInputs from '../../utils/user/handleInputs';
+import HandleInputs from '../../utils/inputLogics/handleInputs';
 import {
   handleImageUrlMessage,
   handleNameMessage,
-} from '../../utils/user/userValidation';
+} from '../../utils/validation/userValidation';
 import api from '../../utils/axios';
 
 export default function InfoEdit() {

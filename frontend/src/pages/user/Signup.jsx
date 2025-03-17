@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import ProfileInput from '../../components/inputBox/profileImg';
 import SubmitButton from '../../components/button/submitButton';
 import api from '../../utils/axios';
-import HandleInputs from '../../utils/user/handleInputs';
+import HandleInputs from '../../utils/inputLogics/handleInputs';
 import {
   handleEmailMessage,
   handleImageUrlMessage,
   handleNameMessage,
   handlePwConfirmMessage,
   handlePwMessage,
-} from '../../utils/user/userValidation';
+} from '../../utils/validation/userValidation';
 
 export default function Signup() {
   const nav = useNavigate();

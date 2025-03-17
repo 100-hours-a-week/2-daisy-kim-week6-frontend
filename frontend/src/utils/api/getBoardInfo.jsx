@@ -14,7 +14,6 @@ export default function BoardInfo() {
         nav('/board');
       }
       setData(response.data);
-      console.log(response.data);
     } catch (e) {
       console.log(e);
     }

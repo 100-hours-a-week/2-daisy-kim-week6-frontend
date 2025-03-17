@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style/boardItemBoxStyle';
 import { useNavigate } from 'react-router-dom';
-import formatDate from '../../utils/formatDate';
+import formatDate from '../../utils/validation/formatDate';
 
 export default function BoardItem({ board }) {
   const nav = useNavigate();
