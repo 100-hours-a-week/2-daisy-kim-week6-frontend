@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   position: fixed;
   top: 0px;
   background-color: ${backgroundColor};
+  z-index: 10;
 `;
 export const Container = styled.div`
   width: 34.25rem;

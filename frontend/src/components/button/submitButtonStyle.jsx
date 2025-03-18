@@ -8,8 +8,8 @@ export const SubmitEdit = styled.div.attrs(({ isDisable }) => ({
   'aria-disabled': isDisable,
 }))`
   height: 2rem;
-  background-color: ${({ isDisable }) =>
-    isDisable ? lightPurple : customPurple};
+  background-color: ${({ isDisabled }) =>
+    isDisabled ? lightPurple : customPurple};
   width: 22rem;
   color: white;
   font-size: 0.875rem;
@@ -18,8 +18,8 @@ export const SubmitEdit = styled.div.attrs(({ isDisable }) => ({
   line-height: 2rem;
   text-align: center;
   &:hover {
-    box-shadow: ${({ isDisable }) =>
-      isDisable ? `none` : `0px 0px 0.5rem ${shadow}`};
+    box-shadow: ${({ isDisabled }) =>
+      isDisabled ? `none` : `0px 0px 0.5rem ${shadow}`};
   }
   cursor: pointer;
 `;

@@ -6,7 +6,7 @@ import CommentList from '../../utils/api/getComments';
 import api from '../../utils/axios';
 
 export default function CommentContainer() {
-  const { comments, id, fetchComments, triggerUpdate } = CommentList();
+  const { comments, id, fetchComments } = CommentList();
   const [newComment, setNewComment] = useState('');
   const [isdisable, setDisable] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -81,14 +81,14 @@ export default function CommentContainer() {
       {isClicked ? (
         <CommentInput
           func={handleNewComment}
-          isDisable={isdisable}
+          isdisabled={isdisable}
           submit={updateComment}
           newCommeent={newComment}
         />
       ) : (
         <CommentInput
           func={handleNewComment}
-          isDisable={isdisable}
+          isdisabled={isdisable}
           submit={postComment}
           newCommeent={newComment}
         />
