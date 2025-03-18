@@ -20,7 +20,7 @@ export default function BoardItem({ board }) {
         </S.ItemInfo>
       </S.ItemTop>
       <S.ItemBottom>
-        <S.ItemUserImg src={board.userProfileImageUrl} />
+        <S.ItemUserImg src={`http://localhost:8080${board.userImageUrl}`} />
         <S.ItemUserName>{board.userName}</S.ItemUserName>
       </S.ItemBottom>
     </S.ItemWrapper>

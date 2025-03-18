@@ -31,7 +31,9 @@ export default function ContentBody({ board, id }) {
   }
   return (
     <S.ContentBodyWrapper>
-      <S.ContentImg src={board.boardImageUrl} />
+      {board.imageUrl ? (
+        <S.ContentImg src={`http://localhost:8080${board.imageUrl}`} />
+      ) : null}
       <S.ContentText>{board.content}</S.ContentText>
       <S.CountInfoWrapper>
         <S.LikeButton onClick={fetchLike} $isLiked={isLiked}>

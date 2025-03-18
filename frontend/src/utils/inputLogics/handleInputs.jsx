@@ -13,12 +13,13 @@ function HandleInputs() {
   const [imageUrlMessage, setImageUrlMessage] = useState('');
   const [nameMessage, setNameMessage] = useState('');
   const [isdisable, setIsdisable] = useState(true);
+  const [previewImg, setPreviewImg] = useState('');
 
   const handleImgUrl = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImageUrl(imageUrl);
+      setImageUrl(file);
+      setPreviewImg(URL.createObjectURL(file));
     }
   };
 
@@ -73,6 +74,9 @@ function HandleInputs() {
     isdisable,
     setIsdisable,
     handleDisable,
+
+    previewImg,
+    setPreviewImg,
   };
 }
 export default HandleInputs;

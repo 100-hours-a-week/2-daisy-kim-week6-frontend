@@ -22,7 +22,12 @@ export default function Input({
               onChange={func}
             />
           ) : (
-            <S.Input type="text" placeholder={placeholder} onChange={func} />
+            <S.Input
+              type="text"
+              placeholder={placeholder}
+              onChange={func}
+              value={value}
+            />
           )}
           <S.Helper>{helper}</S.Helper>
         </>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import * as S from './style/boardDetailStyle';
 import { useParams } from 'react-router-dom';
 import Header from '../../components/header/header';

@@ -22,7 +22,7 @@ export default function Header({ back, myPage, newProfile }) {
     if (newProfile) {
       setImageUrl(newProfile);
     } else {
-      setImageUrl(data.imageUrl);
+      setImageUrl(`http://localhost:8080${data.imageUrl}`);
     }
   }, [newProfile, data]);
 

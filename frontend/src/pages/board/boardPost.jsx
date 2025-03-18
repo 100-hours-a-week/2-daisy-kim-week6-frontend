@@ -16,6 +16,7 @@ export default function BoardPost() {
   const {
     title,
     content,
+    imageUrl,
     setTitle,
     setContent,
     postBoard,
@@ -23,13 +24,15 @@ export default function BoardPost() {
     updateBoard,
     handleTitle,
     handleContent,
-    handleImageUrl,
+    handleImgUrl,
     titleMessage,
     contentMessage,
     setTitleMessage,
     setContentMessage,
     isdisable,
     handleDisable,
+    previewImg,
+    setPreviewImg,
   } = BoardInputs();
 
   const { data, fetchBoard } = BoardInfo();
@@ -44,14 +47,17 @@ export default function BoardPost() {
   }, [title, content, setTitleMessage, setContentMessage]);
 
   useEffect(() => {
-    fetchBoard();
-  }, [id]);
+    if (id) fetchBoard();
+  }, []);
 
   useEffect(() => {
     if (data) {
       setContent(data.content);
       setTitle(data.title);
-      setImageUrl(data.boardImageUrl);
+      if (data.imageUrl) setImageUrl(data.imageUrl);
+      else {
+        setImageUrl(previewImg);
+      }
     }
   }, [data]);
 
@@ -64,7 +70,6 @@ export default function BoardPost() {
           <S.TitleText>제목*</S.TitleText>
           <S.InputContainer>
             {id ? (
-              //onChange로 바뀔 예정
               <S.InputTitle onChange={handleTitle} value={title} />
             ) : (
               <S.InputTitle
@@ -92,9 +97,9 @@ export default function BoardPost() {
           <S.InputImgWrapper>
             <S.CustomLabel htmlFor="img-input">파일 선택</S.CustomLabel>
             <S.ImgSpan>
-              {data.boardImageUrl ? data.boardImageUrl : '파일을 선택해주세요.'}
+              {imageUrl ? imageUrl.name : '파일을 선택해주세요.'}
             </S.ImgSpan>
-            <S.InputImg id="img-input" type="file" onChange={handleImageUrl} />
+            <S.InputImg id="img-input" type="file" onChange={handleImgUrl} />
           </S.InputImgWrapper>
         </S.InputWrapper>
         {id ? ( //수정 api로 나중에 변경
