@@ -8,6 +8,7 @@ export default function GetUserInfo() {
     try {
       const response = await api.get('/user');
       setData(response.data);
+      console.log(response.data);
     } catch (e) {
       console.log(e);
     }

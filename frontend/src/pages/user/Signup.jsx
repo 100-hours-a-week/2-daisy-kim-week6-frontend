@@ -42,21 +42,32 @@ export default function Signup() {
 
     isdisable,
     handleDisable,
+
+    previewImg,
   } = HandleInputs();
 
   const fetchSignup = async () => {
     try {
-      const requestData = { name, password, passwordConfirm, email, imageUrl };
-      console.log('보낼 데이터:', JSON.stringify(requestData));
-
-      const response = await api.post('/user/registeration', requestData);
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('password', password);
+      formData.append('passwordConfirm', passwordConfirm);
+      formData.append('email', email);
+      if (imageUrl) {
+        formData.append('imageUrl', imageUrl);
+      }
+      const response = await api.post('/user/registeration', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       if (response.data.id !== null) {
         nav('/');
       } else {
         setEmailMessage(response.data.message);
       }
     } catch (e) {
-      console.log(e);
+      console.log(e.response);
     }
   };
 
@@ -103,7 +114,7 @@ export default function Signup() {
           title={'프로필 사진'}
           func={handleImgUrl}
           helper={imageUrlMessage}
-          imageUrl={imageUrl}
+          imageUrl={previewImg}
         />
         <Input
           title={'이메일*'}

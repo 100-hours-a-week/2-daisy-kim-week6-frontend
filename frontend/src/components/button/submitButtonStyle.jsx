@@ -4,12 +4,10 @@ const lightPurple = '#ACA0EB';
 const customPurple = '#7F6AEE';
 const shadow = '#00000040';
 
-export const SubmitEdit = styled.div.attrs(({ isDisable }) => ({
-  'aria-disabled': isDisable,
-}))`
+export const SubmitEdit = styled.div`
   height: 2rem;
-  background-color: ${({ isDisabled }) =>
-    isDisabled ? lightPurple : customPurple};
+  background-color: ${({ $isDisabled }) =>
+    $isDisabled ? lightPurple : customPurple};
   width: 22rem;
   color: white;
   font-size: 0.875rem;
@@ -18,8 +16,8 @@ export const SubmitEdit = styled.div.attrs(({ isDisable }) => ({
   line-height: 2rem;
   text-align: center;
   &:hover {
-    box-shadow: ${({ isDisabled }) =>
-      isDisabled ? `none` : `0px 0px 0.5rem ${shadow}`};
+    box-shadow: ${({ $isDisabled }) =>
+      $isDisabled ? `none` : `0px 0px 0.5rem ${shadow}`};
   }
   cursor: pointer;
 `;

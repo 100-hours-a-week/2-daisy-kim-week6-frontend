@@ -6,6 +6,7 @@ import {
   handleTitleMessage,
 } from '../validation/boardValidation';
 import { useNavigate, useParams } from 'react-router-dom';
+import BoardInfo from '../api/getBoardInfo';
 
 export default function BoardInputs() {
   const nav = useNavigate();
@@ -25,7 +26,8 @@ export default function BoardInputs() {
     setContent(e.target.value);
   };
 
-  const { imageUrl, setImageUrl, handleImageUrl } = HandleInputs();
+  const { imageUrl, setImageUrl, handleImgUrl, previewImg, setPreviewImg } =
+    HandleInputs();
 
   function handleDisable() {
     if (titleMessage === '' && contentMessage === '') {
@@ -36,25 +38,18 @@ export default function BoardInputs() {
   }
 
   async function postBoard() {
-    const requestData = { title, content, imageUrl };
     try {
-      const response = await api.post('/board', requestData);
-      if (response.data.id !== null) {
-        nav(`/board/${response.data.id}`);
-      } else {
-        alert('로그인하세요.');
-        nav('/');
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('content', content);
+      if (imageUrl) {
+        formData.append('imageUrl', imageUrl);
       }
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  async function updateBoard() {
-    const requestData = { title, content, imageUrl };
-    try {
-      const response = await api.patch(`/board/${id}`, requestData);
+      const response = await api.post('/board', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       if (response.data.id !== null) {
         nav(`/board/${response.data.id}`);
       } else {
@@ -64,7 +59,36 @@ export default function BoardInputs() {
       console.log(response.data);
     } catch (e) {
       console.log(e.response);
-      console.log(requestData);
+    }
+  }
+
+  const { data } = BoardInfo();
+  async function updateBoard() {
+    try {
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('content', content);
+
+      if (imageUrl) {
+        formData.append('imageUrl', imageUrl);
+      } else if (previewImg) {
+        formData.append('imageUrl', data.imageUrl);
+      }
+
+      const response = await api.patch(`/board/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      if (response.data.id !== null) {
+        nav(`/board/${response.data.id}`);
+      } else {
+        alert('로그인하세요.');
+        nav('/');
+      }
+      console.log(response.data);
+    } catch (e) {
+      console.log(e.response);
     }
   }
 
@@ -77,7 +101,7 @@ export default function BoardInputs() {
     setImageUrl,
     handleTitle,
     handleContent,
-    handleImageUrl,
+    handleImgUrl,
     postBoard,
     updateBoard,
 
@@ -89,5 +113,8 @@ export default function BoardInputs() {
     isdisable,
     setDisable,
     handleDisable,
+
+    previewImg,
+    setPreviewImg,
   };
 }

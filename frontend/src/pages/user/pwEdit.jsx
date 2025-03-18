@@ -53,7 +53,7 @@ export default function PwEdit() {
       console.log(response.data);
       setShow(true);
     } catch (e) {
-      console.log(e);
+      console.log(e.response);
     }
   }
 

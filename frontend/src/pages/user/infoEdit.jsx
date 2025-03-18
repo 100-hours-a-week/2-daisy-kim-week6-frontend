@@ -18,6 +18,7 @@ export default function InfoEdit() {
   const [show, setShow] = useState(false);
   const { data, fetchUserInfo } = GetUserInfo();
   const [newProfile, setNewProfile] = useState('');
+  const [showingImg, setShowingImg] = useState('');
 
   const {
     name,
@@ -34,6 +35,8 @@ export default function InfoEdit() {
 
     isdisable,
     handleDisable,
+
+    previewImg,
   } = HandleInputs();
 
   useEffect(() => {
@@ -50,17 +53,37 @@ export default function InfoEdit() {
   }, []);
 
   useEffect(() => {
-    setImageUrl(data.imageUrl);
-    if (data.userName) setName(data.userName);
+    if (previewImg) {
+      setShowingImg(previewImg);
+    } else if (data.imageUrl) {
+      const fullImageUrl = `http://localhost:8080${data.imageUrl}`;
+      setShowingImg(fullImageUrl);
+      setImageUrl(fullImageUrl);
+    }
+  }, [previewImg, data.imageUrl]);
+
+  useEffect(() => {
+    if (data) setName(data.name);
   }, [data]);
 
   async function updateUserInfo() {
-    const requestData = { name, imageUrl };
     try {
-      const response = await api.patch('/user', requestData);
+      const formData = new FormData();
+      if (name) {
+        formData.append('name', name);
+      }
+      if (imageUrl) {
+        formData.append('imageUrl', imageUrl);
+      }
+
+      const response = await api.patch('/user', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       setShow(true);
-      setImageUrl(response.data.imageUrl);
-      setNewProfile(response.data.imageUrl);
+      setImageUrl(`http://localhost:8080${response.data.imageUrl}`);
+      setNewProfile(`http://localhost:8080${response.data.imageUrl}`);
       await fetchUserInfo();
       console.log(response.data);
     } catch (e) {
@@ -86,15 +109,16 @@ export default function InfoEdit() {
         <ProfileInput
           title="프로필 사진*"
           func={handleImgUrl}
-          imageUrl={imageUrl}
+          imageUrl={showingImg}
           helper={imageUrlMessage}
         />
         <Input title="이메일" value={data.email} noInput={true} />
         <Input
           title="닉네임"
-          placeholder={data.userName}
+          placeholder={data.name}
           func={handleName}
           helper={nameMessage}
+          value={name}
         />
       </S.Container>
       <SubmitButton
