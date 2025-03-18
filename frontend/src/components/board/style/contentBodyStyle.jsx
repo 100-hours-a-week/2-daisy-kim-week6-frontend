@@ -36,7 +36,7 @@ export const CountInfo = styled.div`
 `;
 export const LikeButton = styled(CountInfo)`
   cursor: pointer;
-  background-color: ${({ isLiked }) => (isLiked ? lightPurple : gray)};
+  background-color: ${({ $isLiked }) => ($isLiked ? lightPurple : gray)};
   &:hover {
     transform: scale(0.96);
     transition: transform 0.2s ease;

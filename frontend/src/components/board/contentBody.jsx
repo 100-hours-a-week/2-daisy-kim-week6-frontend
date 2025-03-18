@@ -34,7 +34,7 @@ export default function ContentBody({ board, id }) {
       <S.ContentImg src={board.boardImageUrl} />
       <S.ContentText>{board.content}</S.ContentText>
       <S.CountInfoWrapper>
-        <S.LikeButton onClick={fetchLike} isLiked={isLiked}>
+        <S.LikeButton onClick={fetchLike} $isLiked={isLiked}>
           {likes} <br />
           좋아요수
         </S.LikeButton>
