@@ -12,6 +12,7 @@ import {
   handleNameMessage,
 } from '../../utils/validation/userValidation';
 import api from '../../utils/axios';
+import Popup from '../../components/popup/Popup';
 
 export default function InfoEdit() {
   const nav = useNavigate();
@@ -19,6 +20,7 @@ export default function InfoEdit() {
   const { data, fetchUserInfo } = GetUserInfo();
   const [newProfile, setNewProfile] = useState('');
   const [showingImg, setShowingImg] = useState('');
+  const [popupShow, setPopupShow] = useState(false);
 
   const {
     name,
@@ -126,8 +128,18 @@ export default function InfoEdit() {
         text="수정하기"
         isDisable={isdisable}
       />
-      <S.WithdrawButton onClick={withdraw}>회원탈퇴</S.WithdrawButton>
+      <S.WithdrawButton onClick={() => setPopupShow(true)}>
+        회원탈퇴
+      </S.WithdrawButton>
       {show ? <S.EditOk>수정 완료</S.EditOk> : null}
+      {popupShow ? (
+        <Popup
+          title="회원탈퇴 하시겠습니까?"
+          content="작성된 게시글과 댓글은 삭제됩니다."
+          okFunction={withdraw}
+          cancelFunction={() => setPopupShow(false)}
+        />
+      ) : null}
     </S.Wrapper>
   );
 }
