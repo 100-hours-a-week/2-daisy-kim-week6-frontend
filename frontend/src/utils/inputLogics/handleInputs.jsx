@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import BoardInfo from '../api/getBoardInfo';
+import { useState } from 'react';
 
 function HandleInputs() {
   const [imageUrl, setImageUrl] = useState('');
@@ -15,19 +14,6 @@ function HandleInputs() {
   const [nameMessage, setNameMessage] = useState('');
   const [isdisable, setIsdisable] = useState(true);
   const [previewImg, setPreviewImg] = useState('');
-
-  const { data, fetchBoard } = BoardInfo();
-
-  useEffect(() => {
-    fetchBoard();
-  }, []);
-
-  useEffect(() => {
-    if (data && data.imageUrl && !imageUrl) {
-      setImageUrl(data.imageUrl);
-      setPreviewImg(`http://localhost:8080${data.imageUrl}`);
-    }
-  }, [data, imageUrl]);
 
   const handleImgUrl = (e) => {
     const file = e.target.files[0];

@@ -32,19 +32,16 @@ export default function BoardPost() {
   //게시글 수정에 필요한 변수
   const { data, fetchBoard } = BoardInfo();
 
+  //데이터 불러오기 및 세팅
   useEffect(() => {
     if (id) fetchBoard();
   }, [id, fetchBoard]);
 
-  //데이터 세팅
   useEffect(() => {
     if (data) {
       setContent(data.content);
       setTitle(data.title);
-      if (data.imageUrl) {
-        setImageUrl(data.imageUrl);
-        console.log(data.imageUrl);
-      }
+      setImageUrl(data.imageUrl);
     }
   }, [data, setContent, setTitle, setImageUrl]);
 
