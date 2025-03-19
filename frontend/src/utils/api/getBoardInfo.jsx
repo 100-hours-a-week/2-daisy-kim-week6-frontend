@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import api from '../axios';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function BoardInfo() {
   const nav = useNavigate();
   const id = useParams().boardId;
   const [data, setData] = useState('');
 
-  async function fetchBoard() {
+  const fetchBoard = useCallback(async () => {
     try {
       const response = await api.get(`/board/${id}`);
       if (response.data.id === null) {
@@ -18,6 +18,6 @@ export default function BoardInfo() {
     } catch (e) {
       console.log(e.response);
     }
-  }
+  }, [id, nav]);
   return { data, fetchBoard };
 }

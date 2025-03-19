@@ -7,7 +7,7 @@ import GetUserInfo from '../../utils/api/getUserInfo';
 export default function Header({ back, myPage, newProfile }) {
   const nav = useNavigate();
   const [open, setOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState(null);
   function openToggle() {
     setOpen(!open);
   }
