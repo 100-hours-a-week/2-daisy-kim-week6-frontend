@@ -90,8 +90,6 @@ export default function BoardInputs() {
 
       if (imageUrl instanceof File) {
         formData.append('imageUrl', imageUrl);
-      } else if (data.imageUrl) {
-        formData.append('imageUrl', data.imageUrl); // 기존 이미지 유지
       }
 
       const response = await api.patch(`/board/${id}`, formData, {
