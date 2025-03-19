@@ -4,10 +4,6 @@ import * as S from './style/boardPostStyle';
 import { useParams } from 'react-router-dom';
 import SubmitButton from '../../components/button/submitButton';
 import BoardInputs from '../../utils/inputLogics/boardInputs';
-import {
-  handleContentMessage,
-  handleTitleMessage,
-} from '../../utils/validation/boardValidation';
 import BoardInfo from '../../utils/api/getBoardInfo';
 
 export default function BoardPost() {
@@ -16,50 +12,41 @@ export default function BoardPost() {
   const {
     title,
     content,
-    imageUrl,
     setTitle,
     setContent,
+
     postBoard,
-    setImageUrl,
     updateBoard,
+
     handleTitle,
     handleContent,
-    handleImgUrl,
     titleMessage,
     contentMessage,
-    setTitleMessage,
-    setContentMessage,
     isdisable,
-    handleDisable,
-    previewImg,
-    setPreviewImg,
+
+    imageUrl,
+    setImageUrl,
+    handleImgUrl,
   } = BoardInputs();
 
+  //게시글 수정에 필요한 변수
   const { data, fetchBoard } = BoardInfo();
 
   useEffect(() => {
-    handleDisable();
-  }, [titleMessage, contentMessage, handleDisable]);
-
-  useEffect(() => {
-    handleTitleMessage(title, setTitleMessage);
-    handleContentMessage(content, setContentMessage);
-  }, [title, content, setTitleMessage, setContentMessage]);
-
-  useEffect(() => {
     if (id) fetchBoard();
-  }, []);
+  }, [id, fetchBoard]);
 
+  //데이터 세팅
   useEffect(() => {
     if (data) {
       setContent(data.content);
       setTitle(data.title);
-      if (data.imageUrl) setImageUrl(data.imageUrl);
-      else {
-        setImageUrl(previewImg);
+      if (data.imageUrl) {
+        setImageUrl(data.imageUrl);
+        console.log(data.imageUrl);
       }
     }
-  }, [data]);
+  }, [data, setContent, setTitle, setImageUrl]);
 
   return (
     <S.Wrapper>
@@ -97,12 +84,12 @@ export default function BoardPost() {
           <S.InputImgWrapper>
             <S.CustomLabel htmlFor="img-input">파일 선택</S.CustomLabel>
             <S.ImgSpan>
-              {imageUrl ? imageUrl.name : '파일을 선택해주세요.'}
+              {imageUrl ? imageUrl.name || imageUrl : '파일을 선택해주세요.'}
             </S.ImgSpan>
             <S.InputImg id="img-input" type="file" onChange={handleImgUrl} />
           </S.InputImgWrapper>
         </S.InputWrapper>
-        {id ? ( //수정 api로 나중에 변경
+        {id ? (
           <SubmitButton
             func={updateBoard}
             text="수정하기"

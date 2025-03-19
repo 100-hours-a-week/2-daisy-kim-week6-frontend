@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import api from '../axios';
 import HandleInputs from './handleInputs';
 import {
@@ -11,12 +11,23 @@ import BoardInfo from '../api/getBoardInfo';
 export default function BoardInputs() {
   const nav = useNavigate();
   const id = useParams().boardId;
+
+  //제목, 내용
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  //helper
   const [titleMessage, setTitleMessage] = useState('');
   const [contentMessage, setContentMessage] = useState('');
+
+  //버튼 활성화 여부
   const [isdisable, setDisable] = useState(true);
 
+  const { data } = BoardInfo();
+  //이미지 - 불러온 활용할 함수 ) 바로 넘길 거
+  const { imageUrl, setImageUrl, handleImgUrl } = HandleInputs(data);
+
+  //helper, 제목, 내용 핸들링
   const handleTitle = (e) => {
     handleTitleMessage(e.target.value, setTitleMessage);
     setTitle(e.target.value);
@@ -26,17 +37,25 @@ export default function BoardInputs() {
     setContent(e.target.value);
   };
 
-  const { imageUrl, setImageUrl, handleImgUrl, previewImg, setPreviewImg } =
-    HandleInputs();
+  useEffect(() => {
+    handleTitleMessage(title, setTitleMessage);
+    handleContentMessage(content, setContentMessage);
+  }, [title, content, setTitleMessage, setContentMessage]);
 
-  function handleDisable() {
+  //제출 버튼 활성화 함수
+  const handleDisable = useCallback(() => {
     if (titleMessage === '' && contentMessage === '') {
       setDisable(false);
     } else {
       setDisable(true);
     }
-  }
+  }, [titleMessage, contentMessage]);
 
+  useEffect(() => {
+    handleDisable();
+  }, [handleDisable]);
+
+  //게시글 작성 api
   async function postBoard() {
     try {
       const formData = new FormData();
@@ -62,17 +81,17 @@ export default function BoardInputs() {
     }
   }
 
-  const { data } = BoardInfo();
+  //게시글 업데이트
   async function updateBoard() {
     try {
       const formData = new FormData();
       formData.append('title', title);
       formData.append('content', content);
 
-      if (imageUrl) {
+      if (imageUrl instanceof File) {
         formData.append('imageUrl', imageUrl);
-      } else if (previewImg) {
-        formData.append('imageUrl', data.imageUrl);
+      } else if (data.imageUrl) {
+        formData.append('imageUrl', data.imageUrl); // 기존 이미지 유지
       }
 
       const response = await api.patch(`/board/${id}`, formData, {
@@ -97,11 +116,10 @@ export default function BoardInputs() {
     content,
     setTitle,
     setContent,
-    imageUrl,
-    setImageUrl,
+
     handleTitle,
     handleContent,
-    handleImgUrl,
+
     postBoard,
     updateBoard,
 
@@ -110,11 +128,10 @@ export default function BoardInputs() {
     setTitleMessage,
     setContentMessage,
 
-    isdisable,
-    setDisable,
-    handleDisable,
+    imageUrl,
+    setImageUrl,
+    handleImgUrl,
 
-    previewImg,
-    setPreviewImg,
+    isdisable,
   };
 }
