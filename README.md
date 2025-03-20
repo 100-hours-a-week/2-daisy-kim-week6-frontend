@@ -5,9 +5,14 @@
 https://github.com/100-hours-a-week/2-daisy-kim-week6-backend
 
 ### 🛠️ 기술 스택
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+
+<br>
 
 # 📌 결과 영상
 https://github.com/user-attachments/assets/2e62818c-5f6f-40b9-86c0-2d574c100834
+
+<br>
 
 # 📌 폴더 구조
 ```
@@ -30,25 +35,73 @@ https://github.com/user-attachments/assets/2e62818c-5f6f-40b9-86c0-2d574c100834
     ┗ 📂 validation //helper 텍스트, 제출 버튼 활성화 여부, 날짜 출력 형식 변환
 ```
 
+<br>
+
 # 📌 구현 기능
-| 화면 및 컴포넌트 | 파일명 |
+| 화면 및 컴포넌트 | 파일명 | 상세 설명
+| --- | --- | --- |
+| 로그인 화면 | Login.jsx | |
+| 회원가입 화면 | Signup.jsx | |
+| 회원 정보 수정 화면 | infoEdit.jsx | |
+| 비밀번호 수정 화면 | pwEdit.jsx | |
+| 게시글 목록 조회 화면 | boardList.jsx | |
+| 게시글 상세 조회 화면 | boardDetail.jsx | |
+| 게시글 작성, 수정 화면 | boardPost.jsx | |
+| 게시글 항목 컴포넌트 | boardItemBox.jsx | 게시글 목록 화면 |
+| 제목, 내용 컴포넌트 | contentBody.jsx | 게시글 상세 화면 |
+| 게시글 정보 상단 컴포넌트 | components/board/header.jsx | 게시글 상세 화면의 사용자 정보, 버튼 |
+| 사용자 정보 컴포넌트 | userInfo.jsx | 게시글 상세 화면의 상단, 댓글에 적용 |
+| 수정, 삭제 버튼 컴포넌트 | EditDelete.jsx | 게시글 상세 화면의 게시글, 댓글에 적용 |
+| 완료 버튼 컴포넌트 | submitButton.jsx | 회원가입, 로그인, 게시글 작성, 회원 정보 수정에 적용 |
+| 댓글 컴포넌트 | commentContainer.jsx | 게시글 상세 화면 |
+| 댓글 각 항목 컴포넌트 | CommentItem.jsx | 게시글 상세 화면 |
+| 댓글 입력 컴포넌트 | Input.jsx | 게시글 상세 화면 |
+| 헤더 컴포넌트 | components/header/header.jsx | 로그인, 회원가입 제외 모든 화면에 적용 |
+| 마이페이지 토글 컴포넌트 | toggle.jsx | 로그인, 회원가입 제외 모든 화면에 적용 |
+| 프로필 등록 및 수정 컴포넌트 | profileImg.jsx | 회원가입, 개인 정보 수정 화면에 적용 |
+| 입력 컴포넌트 | userInput.jsx | 회원가입, 로그인, 정보 수정의 각 입력에 적용 |
+| 팝업 모달 컴포넌트 | popup.jsx | 회원 탈퇴, 게시글 삭제, 댓글 삭제에 적용 |
+
+| 로직 | 파일명 |
 | --- | --- |
-| 로그인 화면 | Login.jsx |
-| 회원가입 화면 | Signup.jsx |
-| 회원 정보 수정 화면 | infoEdit.jsx |
-| 비밀번호 수정 화면 | pwEdit.jsx |
-| 게시글 목록 조회 화면 | boardList.jsx |
-| 게시글 상세 조회 화면 | boardDetail.jsx |
-| 게시글 작성, 수정 화면 | boardPost.jsx |
-| 게시글 목록 화면의 각 게시글 아이템 컴포넌트 | boardItemBox.jsx |
-| 게시글 상세 화면의 제목, 내용 컴포넌트 | contentBody.jsx |
-| 게시글 상세 화면의 제목, 생성 시각, 수정, 삭제 버튼을 묶은 게시글의 상단 컴포넌트 | components/board/header.jsx |
-|  | |
+| 게시글 상세 정보 조회 api | getBoardInfo.jsx |
+| 댓글 목록 조회 api | getComments.jsx |
+| 사용자 정보 조회 api | getUserInfo.jsx |
+| 게시글 작성 관련 처리 로직 및 작성/삭제 api | boardInputs.jsx |
+| 회원가입 입력 처리 로직 모음 | handleInputs.jsx |
+| 게시글 helper text 및 제출 가능 확인 로직 | boardValidation.jsx |
+| 날짜 형식 변경 로직 | formatData.jsx |
+| 사용자 helper text 및 제출 가능 확인 로직 | userValidation.jsx |
 
-# 📌 회고
+<br>
+
+# 📌 회고 (간략)
 ### 1. 댓글 개수 화면 새로고침 문제
+댓글 등록 및 삭제 시 댓글 수 출력하는 부분을 로딩하지 못하였습니다.<br>
+다른 부분은 해당 컴포넌트만 즉시 업데이트하는 것애 성공하였지만<br>
+댓글 수의 경우 파일 간 의존도가 너무 높아지는 문제로 인해 페이지 전체 재로딩으로 구현하게 된 점이 아쉽습니다.
+
 ### 2. api, 처리 로직 분리 문제
+- 좋아요 등록, 취소
+- 게시글 목록 조회
+- 개인 정보 수정
+- 탈퇴
+- 로그인
+- 비밀번호 수정
+- 회원 가입
+위 항목들에 대해 api를 분리하지 못한 점이 아쉽습니다.<br>
+조회의 경우 쉽게 분리 가능하지만 수정 및 등록 api의 경우 파일을 분리하여 리액트로 구현한 경험이 처음입니다.<br>
+단순히 컴포넌트의 분리만 중요하게 생각하고 비즈니스 로직과 ui의 분리를 중요하게 생각하지 못하였습니다.<br>
+때문에 해당 프로젝트에서 이를 분리하는 데 시간을 많이 투자하였으나 ui 파일에 호출하는 변수가 많아지는 문제와 파라미터를 넘기는 과정에서 많은 매개변수를 전달하게 되는 점을 고려하게 되었습니다.<br>
+구현 막바지 쯤, 매개변수를 줄이고 api를 분리하는 방법의 감을 익혔으나<br>
+고도화 과정에서 이를 적용하고자 합니다.
 
+### 3. 파일명 통일성 문제
+일반적으로 파스칼로 파일을 표시하나 어떤 파일은 카멜, 어떤 파일 이름은 파스칼로 이름을 짓게 되었습니다.<br>
+카멜 케이스를 익숙하게 사용한 탓에 두 양식의 혼용이 생겼습니다.<br>
+고도화 과정에서 이를 리팩토링하고자 합니다.
 
-### 궁금한 점
-혹시 백엔드, 프론트엔드 과제 한 것 중 어느 부분의 가능성이 더 보이는지 케빈의 의견이 궁금합니다.
+### 4. 마감기한을 지키지 못한 문제
+첫 OT 때, 완벽한 것보다 기한을 지키는 게 더 중요하다는 웨인의 강의를 기억하고 최대한 지키고 싶었으나<br>
+게시글 수정 및 회원 정보 수정에서 이미지 부분에 시간을 너무 오래 쓴 문제로 마감 기한을 지키지 못하였습니다.<br>
+이에 아쉬움을 크게 느끼고 있으며 코드 리팩토링을 진행하기 전에 제출하게 된 점 양해 부탁드립니다.
